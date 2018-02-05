@@ -4,6 +4,21 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="description" content="{{ with .Site.Params.description }}{{ . }}{{ end }}">
   <meta name="author" content="{{ with .Site.Params.name }}{{ . }}{{ end }}">
+  {{ if .Site.Params.opengraph.description }}
+  <meta name="og:description" content="{{ .Site.Params.opengraph.description | printf "%s" }}">
+  {{ end }}
+  {{ if .Site.Params.opengraph.image }}
+  <meta property="og:image" content="{{ .Site.Params.opengraph.image | printf "/images/%s" | relURL  }}">
+  {{ end }}
+  {{ if .Site.Params.opengraph.imageType }}
+  <meta property="og:image:type" content="{{ .Site.Params.opengraph.imageType | printf "%s" }}">  
+  {{ end }}
+  {{ if .Site.Params.opengraph.imageWidth }}
+  <meta property="og:image:width" content="{{ .Site.Params.opengraph.imageWidth | printf "%d" }}">
+  {{ end }}
+  {{ if .Site.Params.opengraph.imageHeight }}
+  <meta property="og:image:height" content="{{ .Site.Params.opengraph.imageHeight | printf "%d" }}">
+  {{ end }}
   {{ .Hugo.Generator }}
   {{ if .Site.Params.favicon_ico }}
     <link rel="icon" href="{{ .Site.Params.favicon_ico | printf "/images/icons/%s" | relURL  }}" type="image/x-icon" {{ if .Site.Params.favicon_ico_sizes }}sizes="{{ .Site.Params.favicon_ico_sizes  }}"{{ end }} />
@@ -23,8 +38,8 @@
   {{ end }}
 
   {{ if not .Site.Params.custom_icons }}
-    <link rel="stylesheet" href="{{ "/assets/css/font-awesome.min.css" | relURL }}" />
-  {{ end }}
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.2/css/all.css">
+    {{ end }}
 
   {{ range .Site.Params.custom_css }}
     <link rel="stylesheet" href="{{ . | absURL }}">
