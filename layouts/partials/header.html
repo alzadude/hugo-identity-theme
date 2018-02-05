@@ -5,7 +5,7 @@
   <meta name="description" content="{{ with .Site.Params.description }}{{ . }}{{ end }}">
   <meta name="author" content="{{ with .Site.Params.name }}{{ . }}{{ end }}">
   {{ if .Site.Params.opengraph.description }}
-  <meta name="og:description" content="{{ .Site.Params.opengraph.description | printf "%s" }}">
+  <meta property="og:description" content="{{ .Site.Params.opengraph.description | printf "%s" }}">
   {{ end }}
   {{ if .Site.Params.opengraph.image }}
   <meta property="og:image" content="{{ .Site.Params.opengraph.image | printf "/images/%s" | relURL  }}">
